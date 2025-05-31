@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#outerWrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#outerWrap #mainContainer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 25rem;
+  height: auto;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+#outerWrap #mainContainer #temperatureDiv {
+  position: relative;
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .temp-div {
+  font-size: 15px;
+  margin-top: 5px;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .main-temp-value {
+  margin-top: 10px;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .sub-temp-stats {
+  width: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .sub-temp-div {
+  margin: 0 6px 6px 0;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureIcon .weather-icon {
+  width: 100px;
+  height: 100px;
+}
+#outerWrap #mainContainer #otherTempStats {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+#outerWrap #mainContainer #otherTempStats .other-stats-sub-div {
+  position: relative;
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+#outerWrap #mainContainer #futureDaysStats {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+#outerWrap #mainContainer #futureDaysStats #futureStatContainer {
+  position: relative;
+  width: inherit;
+  display: flex;
+  justify-content: space-between;
+}/*# sourceMappingURL=App.css.map */
