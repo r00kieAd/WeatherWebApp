@@ -1,0 +1,112 @@
+$mainFontSize: 15px;
+$mainDivWidth: 25rem;
+$mainDivHeight: auto;
+$mainWeatherIconWidth: 100px;
+$mainWeatherIconHeight: 100px;
+$mainPadding: 20px;
+$subPadding: 10px;
+$mainBorderRadius: 10px;
+$subBorderRadius: 5px;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#outerWrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    #mainContainer {
+
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: $mainDivWidth;
+        height: $mainDivHeight;
+        padding: $mainPadding;
+        border: 1px solid black;
+        border-radius: $mainBorderRadius;
+
+        #temperatureDiv {
+
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid black;
+            border-radius: $subBorderRadius;
+
+            #temperatureInfo {
+                #temperatureContainer {
+
+                    width: $mainWeatherIconWidth;
+                    height: $mainWeatherIconHeight;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+
+                    .temp-div {
+                        font-size: $mainFontSize;
+                        margin-top: 5px;
+                    }
+
+                    .main-temp-value {
+                        margin-top: 10px;
+                    }
+
+                    .sub-temp-stats {
+                        width: inherit;
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                    }
+
+                    .sub-temp-div {
+                        margin: 0 6px 6px 0;
+                    }
+
+                }
+            }
+
+            #temperatureIcon {
+                .weather-icon {
+                    width: $mainWeatherIconWidth;
+                    height: $mainWeatherIconHeight;
+                }
+            }
+        }
+
+        #otherTempStats {
+
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: $subBorderRadius;
+            padding: $subPadding;
+
+            .other-stats-sub-div {
+                position: relative;
+                width: inherit;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        #futureDaysStats {
+            border: 1px solid black;
+            border-radius: $subBorderRadius;
+            padding: $subPadding;
+            #futureStatContainer {
+                position: relative;
+                width: inherit;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}
