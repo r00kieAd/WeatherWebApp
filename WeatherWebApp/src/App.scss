@@ -1,16 +1,31 @@
-$mainFontSize: 15px;
+$primaryColor: #222222;
+$secondaryColor: #423F3E;
+$baseColor: #000000;
+$mainFontColor: #EEEEEE;
+$mainFontSize: 16px;
+$futureDaysFontSize: 12px;
 $mainDivWidth: 25rem;
 $mainDivHeight: auto;
 $mainWeatherIconWidth: 100px;
 $mainWeatherIconHeight: 100px;
-$mainPadding: 20px;
-$subPadding: 10px;
+$futureWeatherIconWidth: 30px;
+$futureWeatherIconHeight: 30px;
+$mainPadding: 2px 5px 2px 5px;
+$subPadding: 7px;
 $mainBorderRadius: 10px;
-$subBorderRadius: 5px;
+$subBorderRadius: 10px;
+$gridGap: 5px 0 5px 0;
 
 body {
     margin: 0;
     padding: 0;
+    background: $baseColor;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 #outerWrap {
@@ -28,7 +43,6 @@ body {
         width: $mainDivWidth;
         height: $mainDivHeight;
         padding: $mainPadding;
-        border: 1px solid black;
         border-radius: $mainBorderRadius;
 
         #temperatureDiv {
@@ -38,6 +52,9 @@ body {
             justify-content: space-around;
             border: 1px solid black;
             border-radius: $subBorderRadius;
+            padding: $subPadding;
+            margin: $gridGap;
+            background: $primaryColor;
 
             #temperatureInfo {
                 #temperatureContainer {
@@ -51,6 +68,7 @@ body {
 
                     .temp-div {
                         font-size: $mainFontSize;
+                        color: $mainFontColor;
                         margin-top: 5px;
                     }
 
@@ -87,25 +105,53 @@ body {
             flex-direction: column;
             border: 1px solid black;
             border-radius: $subBorderRadius;
-            padding: $subPadding;
+            padding: calc($subPadding + 5px);
+            margin: $gridGap;
+            background: $primaryColor;
+            font-size: $mainFontSize;
+            color: $mainFontColor;
 
             .other-stats-sub-div {
                 position: relative;
                 width: inherit;
                 display: flex;
                 justify-content: space-between;
+                margin: $gridGap;
             }
         }
 
         #futureDaysStats {
             border: 1px solid black;
             border-radius: $subBorderRadius;
-            padding: $subPadding;
+            padding: calc($subPadding + 5px);
+            margin: $gridGap;
+            background: $primaryColor;
+
             #futureStatContainer {
                 position: relative;
                 width: inherit;
                 display: flex;
                 justify-content: space-between;
+
+                .days {
+                    color: $mainFontColor;
+                    .day-weather-icon {
+                        img {
+                            width: $futureWeatherIconWidth;
+                            height: $futureWeatherIconHeight;
+                        }
+                    }
+
+                    .day-name {
+                        font-size: calc($futureDaysFontSize + 3px);
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: $futureDaysFontSize;
+                }
             }
         }
     }

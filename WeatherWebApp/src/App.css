@@ -1,6 +1,13 @@
 body {
   margin: 0;
   padding: 0;
+  background: #000000;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 #outerWrap {
@@ -16,8 +23,7 @@ body {
   justify-content: space-around;
   width: 25rem;
   height: auto;
-  padding: 20px;
-  border: 1px solid black;
+  padding: 2px 5px 2px 5px;
   border-radius: 10px;
 }
 #outerWrap #mainContainer #temperatureDiv {
@@ -25,7 +31,10 @@ body {
   display: flex;
   justify-content: space-around;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 10px;
+  padding: 7px;
+  margin: 5px 0 5px 0;
+  background: #222222;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer {
   width: 100px;
@@ -36,7 +45,8 @@ body {
   justify-content: center;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .temp-div {
-  font-size: 15px;
+  font-size: 16px;
+  color: #EEEEEE;
   margin-top: 5px;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .main-temp-value {
@@ -60,23 +70,45 @@ body {
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 5px 0 5px 0;
+  background: #222222;
+  font-size: 16px;
+  color: #EEEEEE;
 }
 #outerWrap #mainContainer #otherTempStats .other-stats-sub-div {
   position: relative;
   width: inherit;
   display: flex;
   justify-content: space-between;
+  margin: 5px 0 5px 0;
 }
 #outerWrap #mainContainer #futureDaysStats {
   border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 5px 0 5px 0;
+  background: #222222;
 }
 #outerWrap #mainContainer #futureDaysStats #futureStatContainer {
   position: relative;
   width: inherit;
   display: flex;
   justify-content: space-between;
+}
+#outerWrap #mainContainer #futureDaysStats #futureStatContainer .days {
+  color: #EEEEEE;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+#outerWrap #mainContainer #futureDaysStats #futureStatContainer .days .day-weather-icon img {
+  width: 30px;
+  height: 30px;
+}
+#outerWrap #mainContainer #futureDaysStats #futureStatContainer .days .day-name {
+  font-size: 15px;
 }/*# sourceMappingURL=App.css.map */
