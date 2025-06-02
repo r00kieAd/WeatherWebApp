@@ -1,10 +1,20 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 import clearSky from './assets/clear-sky.png'
+import refresh from './assets/reload.png'
+import switchh from './assets/location.png'
+import save from './assets/floppy-disk.png'
 import './App.css'
+// https://www.flaticon.com/packs/weather-384
 
 function App() {
 
+  const [mainTemperature, setMainTemperature] = useState();
+  const [mainHighTemp, setMainHighTemp] = useState();
+  const [mainLowTemp, setMainLowTemp] = useState();
+  const [AQI, setAQI] = useState();
+  const [humidity, setHumidity] = useState();
 
+  
   return (
     <>
       <div id="outerWrap">
@@ -64,6 +74,17 @@ function App() {
                 <div className="day-low future-stat-div">+22</div>
               </div>
             </div>
+          </div>
+        </div>
+        <div id="menu">
+          <div id="refreshButtonDiv" className='menuDivs'>
+            <button><img src={refresh} alt="" /></button>
+          </div>
+          <div id="changeLocationButtonDiv" className='menuDivs'>
+            <button><img src={switchh} alt="" /></button>
+          </div>
+          <div id="snapshotButtonDiv" className='menuDivs'>
+            <button><img src={save} alt="" /></button>
           </div>
         </div>
       </div>
