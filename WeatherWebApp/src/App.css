@@ -15,14 +15,16 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  width: 25rem;
+  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 #outerWrap #mainContainer {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 25rem;
-  height: auto;
   padding: 2px 5px 2px 5px;
   border-radius: 10px;
 }
@@ -111,4 +113,26 @@ body {
 }
 #outerWrap #mainContainer #futureDaysStats #futureStatContainer .days .day-name {
   font-size: 15px;
+}
+#outerWrap #menu {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-evenly;
+  margin: 5px 0 5px 0;
+  background: #222222;
+  padding: 10px;
+  width: calc(25rem - 40%);
+  border-radius: 10px;
+}
+#outerWrap #menu .menuDivs button {
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer;
+}
+#outerWrap #menu .menuDivs img {
+  width: 25px;
+  height: 25px;
 }/*# sourceMappingURL=App.css.map */

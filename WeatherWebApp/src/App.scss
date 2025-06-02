@@ -10,7 +10,10 @@ $mainWeatherIconWidth: 100px;
 $mainWeatherIconHeight: 100px;
 $futureWeatherIconWidth: 30px;
 $futureWeatherIconHeight: 30px;
+$menuIconWidth: 25px;
+$menuIconHeight: 25px;
 $mainPadding: 2px 5px 2px 5px;
+$menuPadding: 10px;
 $subPadding: 7px;
 $mainBorderRadius: 10px;
 $subBorderRadius: 10px;
@@ -23,9 +26,9 @@ body {
 }
 
 .poppins-light {
-  font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 #outerWrap {
@@ -33,6 +36,10 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    width: $mainDivWidth;
+    height: $mainDivHeight;
+    display: flex;
+    flex-direction: column;
 
     #mainContainer {
 
@@ -40,8 +47,6 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
-        width: $mainDivWidth;
-        height: $mainDivHeight;
         padding: $mainPadding;
         border-radius: $mainBorderRadius;
 
@@ -135,6 +140,7 @@ body {
 
                 .days {
                     color: $mainFontColor;
+
                     .day-weather-icon {
                         img {
                             width: $futureWeatherIconWidth;
@@ -152,6 +158,33 @@ body {
                     align-items: center;
                     font-size: $futureDaysFontSize;
                 }
+            }
+        }
+    }
+
+    #menu {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+        justify-content: space-evenly;
+        margin: $gridGap;
+        background: $primaryColor;
+        padding: $menuPadding;
+        width: calc($mainDivWidth - 40%);
+        border-radius: $mainBorderRadius;
+        .menuDivs {
+
+            button {
+                border: none;
+                outline: none;
+                background: none;
+                cursor: pointer;
+            }
+
+            img {
+                width: $menuIconWidth;
+                height: $menuIconHeight;
             }
         }
     }
