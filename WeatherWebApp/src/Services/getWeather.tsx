@@ -2,17 +2,18 @@ import Endpoints from '../Configs/endpoints.json';
 import axios from 'axios';
 
 interface Params {
-    cityName: string | undefined
+  latitude: number | null;
+  longitude: number | null;
 }
 
-async function GetWeather ({ cityName }: Params) {
+async function GetWeatherByLatLon ({ latitude, longitude }: Params) {
 
     const options = {
         method: 'GET',
-        url: Endpoints.getByCity,
+        url: Endpoints.baseURI + Endpoints.getByLatLon,
         params: {
-            city: cityName ?? 'new york',
-            lang: 'EN'
+            latitude: latitude,
+            longitude: longitude,
         },
         headers: {
             'x-rapidapi-key': '2fc7fe89abmsh68aeb886c1c625ep1b9607jsn4cece20a50db',
@@ -22,8 +23,15 @@ async function GetWeather ({ cityName }: Params) {
 
     try {
         const response = await axios.request(options);
-        console.log(response.data);
+        const reqSuccess = response.status == 200;
+        if (reqSuccess) {
+            return {status: reqSuccess, resp: response.data};
+        } else {
+            return {status: reqSuccess, statusCode: response.status, statusMsg: response.statusText};
+        };
     } catch (error) {
-        console.error(error);
-    }
-}
+        return {status: false, statusCode: 500, statusMsg: error};
+    };
+};
+
+export default GetWeatherByLatLon;
