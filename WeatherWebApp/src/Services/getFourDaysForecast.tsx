@@ -1,4 +1,5 @@
 import Endpoints from '../Configs/endpoints.json';
+import OpenWeather from '../Configs/apiKey.json';
 import axios from 'axios';
 
 interface Params {
@@ -17,14 +18,14 @@ async function GetFourDayWeatherForecast({ latitude, longitude }: Params) {
       lang: 'EN'
     },
     headers: {
-      'x-rapidapi-key': '2fc7fe89abmsh68aeb886c1c625ep1b9607jsn4cece20a50db',
-      'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+      'x-rapidapi-key': OpenWeather.key,
+      'x-rapidapi-host': OpenWeather.host
     }
   };
 
   try {
     const response = await axios.request(options);
-    console.log(response.data);
+    // console.log(response.data);
     const reqSuccess = response.status == 200;
     if (reqSuccess) {
       return { status: reqSuccess, resp: response.data };

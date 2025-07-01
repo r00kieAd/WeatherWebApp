@@ -1,12 +1,13 @@
 import Endpoints from '../Configs/endpoints.json';
+import OpenWeather from '../Configs/apiKey.json';
 import axios from 'axios';
 
 interface Params {
-  latitude: number | null;
-  longitude: number | null;
+    latitude: number | null;
+    longitude: number | null;
 }
 
-async function GetWeatherByLatLon ({ latitude, longitude }: Params) {
+async function GetWeatherByLatLon({ latitude, longitude }: Params) {
 
     const options = {
         method: 'GET',
@@ -16,8 +17,8 @@ async function GetWeatherByLatLon ({ latitude, longitude }: Params) {
             longitude: longitude,
         },
         headers: {
-            'x-rapidapi-key': '2fc7fe89abmsh68aeb886c1c625ep1b9607jsn4cece20a50db',
-            'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+            'x-rapidapi-key': OpenWeather.key,
+            'x-rapidapi-host': OpenWeather.host
         }
     };
 
@@ -25,12 +26,12 @@ async function GetWeatherByLatLon ({ latitude, longitude }: Params) {
         const response = await axios.request(options);
         const reqSuccess = response.status == 200;
         if (reqSuccess) {
-            return {status: reqSuccess, resp: response.data};
+            return { status: reqSuccess, resp: response.data };
         } else {
-            return {status: reqSuccess, statusCode: response.status, statusMsg: response.statusText};
+            return { status: reqSuccess, statusCode: response.status, statusMsg: response.statusText };
         };
     } catch (error) {
-        return {status: false, statusCode: 500, statusMsg: error};
+        return { status: false, statusCode: 500, statusMsg: error };
     };
 };
 
