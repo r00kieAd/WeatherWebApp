@@ -1,3 +1,5 @@
 {
-    "getByCity": "https://open-weather13.p.rapidapi.com/city"
+    "baseURI": "https://open-weather13.p.rapidapi.com",
+    "getByLatLon": "/latlon",
+    "getFiveDays": "/fivedaysforcast"
 }

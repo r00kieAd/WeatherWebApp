@@ -39,7 +39,7 @@ body {
   background: #222222;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer {
-  width: 100px;
+  width: calc(100px + 50%);
   height: 100px;
   display: flex;
   flex-direction: column;
@@ -58,10 +58,13 @@ body {
   width: inherit;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .sub-temp-div {
   margin: 0 6px 6px 0;
+}
+#outerWrap #mainContainer #temperatureDiv #temperatureInfo #temperatureContainer .sub-temp-div .sub-temp-header {
+  font-weight: bold;
 }
 #outerWrap #mainContainer #temperatureDiv #temperatureIcon .weather-icon {
   width: 100px;
