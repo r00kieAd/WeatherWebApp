@@ -1,5 +1,4 @@
 import Endpoints from '../Configs/endpoints.json';
-import OpenWeather from '../Configs/apiKey.json';
 import axios from 'axios';
 
 interface Params {
@@ -17,8 +16,8 @@ async function GetWeatherByLatLon({ latitude, longitude }: Params) {
             longitude: longitude,
         },
         headers: {
-            'x-rapidapi-key': OpenWeather.key,
-            'x-rapidapi-host': OpenWeather.host
+            'x-rapidapi-key': import.meta.env.VITE_OPEN_WEATHER_API_KEY,
+            'x-rapidapi-host': import.meta.env.VITE_OPEN_WEATHER_API_HOST,
         }
     };
 
