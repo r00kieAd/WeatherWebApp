@@ -1,15 +1,17 @@
+import { useState } from "react";
+
 interface Params {
-    error: string;
+    error: string | undefined;
 }
 
-function displayError({ error }: Params) {
+function DisplayError({ error }: Params) {
     return (
         <>
-        <div id="errDiv">
+        <div className="poppins-light">
             <p>{error}</p>
         </div>
         </>
     );
 };
 
-export default displayError;
+export default DisplayError;

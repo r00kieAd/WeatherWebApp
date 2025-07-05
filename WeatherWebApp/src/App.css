@@ -4,10 +4,52 @@ body {
   background: #000000;
 }
 
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes popDown {
+  0% {
+    top: 30%;
+  }
+  100% {
+    top: 20%;
+  }
+}
+.rotate {
+  animation: rotateAnimation 1s linear infinite;
+  transform-origin: center;
+}
+
 .poppins-light {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: normal;
+}
+
+#errorDiv {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 25rem;
+  height: calc(auto + 10px);
+  border-radius: 10px;
+  text-align: center;
+  color: #F7374F;
+}
+
+.pop-down {
+  display: block;
+  animation: popDown 0.5s ease-in-out;
+}
+
+.no-error {
+  display: none;
 }
 
 #outerWrap {
@@ -129,13 +171,18 @@ body {
   width: calc(25rem - 40%);
   border-radius: 10px;
 }
+#outerWrap #menu .menuDivs {
+  position: static;
+}
 #outerWrap #menu .menuDivs button {
   border: none;
   outline: none;
   background: none;
   cursor: pointer;
+  padding: 0;
 }
 #outerWrap #menu .menuDivs img {
   width: 25px;
   height: 25px;
+  display: block;
 }/*# sourceMappingURL=App.css.map */

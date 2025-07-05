@@ -2,6 +2,7 @@ $primaryColor: #222222;
 $secondaryColor: #423F3E;
 $baseColor: #000000;
 $mainFontColor: #EEEEEE;
+$errorFontColor: #F7374F;
 $mainFontSize: 16px;
 $futureDaysFontSize: 12px;
 $mainDivWidth: 25rem;
@@ -25,10 +26,56 @@ body {
     background: $baseColor;
 }
 
+@keyframes rotateAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes popDown {
+    0% {
+        top: 30%;
+    }
+
+    100% {
+        top: 20%;
+    }
+}
+
+.rotate {
+    animation: rotateAnimation 1s linear infinite;
+    transform-origin: center;
+}
+
 .poppins-light {
     font-family: "Poppins", sans-serif;
     font-weight: 300;
     font-style: normal;
+}
+
+#errorDiv {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: $mainDivWidth;
+    height: calc($mainDivHeight + 10px);
+    border-radius: $mainBorderRadius;
+    text-align: center;
+    color: $errorFontColor;
+}
+
+.pop-down {
+    display: block;
+    animation: popDown 0.5s ease-in-out;
+}
+
+.no-error {
+    display: none;
 }
 
 #outerWrap {
@@ -90,6 +137,7 @@ body {
 
                     .sub-temp-div {
                         margin: 0 6px 6px 0;
+
                         .sub-temp-header {
                             font-weight: bold;
                         }
@@ -176,18 +224,22 @@ body {
         padding: $menuPadding;
         width: calc($mainDivWidth - 40%);
         border-radius: $mainBorderRadius;
+
         .menuDivs {
+            position: static;
 
             button {
                 border: none;
                 outline: none;
                 background: none;
                 cursor: pointer;
+                padding: 0;
             }
 
             img {
                 width: $menuIconWidth;
                 height: $menuIconHeight;
+                display: block;
             }
         }
     }
