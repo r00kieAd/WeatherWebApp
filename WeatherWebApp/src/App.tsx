@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import refresh from './assets/reload.png';
 import location from './assets/location.png';
-import save from './assets/floppy-disk.png';
+import coloredTheme from './assets/coloredTheme.png';
+import darkTheme from './assets/darkTheme.png';
 import GetWeatherByLatLon from './Services/getWeather';
 import GetFourDaysForecast from './Services/getFourDaysForecast';
 import WeatherIcon from './components/weatherIcon';
@@ -252,7 +253,7 @@ function App() {
             <button><img src={location} alt="" /></button>
           </div>
           <div id="snapshotButtonDiv" className='menuDivs'>
-            <button><img src={save} alt="" /></button>
+            <button><img src={coloredTheme} alt="" /></button>
           </div>
         </div>
       </div>
