@@ -5,6 +5,7 @@ import save from './assets/floppy-disk.png';
 import GetWeatherByLatLon from './Services/getWeather';
 import GetFourDaysForecast from './Services/getFourDaysForecast';
 import WeatherIcon from './components/weatherIcon';
+import DisplayError from './components/displayError';
 import './App.css'
 // https://www.flaticon.com/packs/weather-384
 
@@ -12,9 +13,9 @@ function App() {
 
   const [latitude, setLatitude] = useState<number | null>(null);
   const [longitude, setLongitude] = useState<number | null>(null);
-  const [weatherInfoFetched, setWeatherInfoFetched] = useState<string>();
-  const [mainWeatherCondition, setMainWeatherCondition] = useState<string>();
-  const [mainWeatherDescription, setMainWeatherDescription] = useState<string>();
+  const [weatherInfoFetched, setWeatherInfoFetched] = useState<boolean>(true);
+  const [mainWeatherCondition, setMainWeatherCondition] = useState<string>('NA');
+  const [mainWeatherDescription, setMainWeatherDescription] = useState<string>('NA');
   const [mainWeatherIconCode, setMainWeatherIconCode] = useState<string>('01d');
   const [mainTemperature, setMainTemperature] = useState<string>('00.00');
   const [mainHighTemp, setMainHighTemp] = useState<string>('00.00');
@@ -24,7 +25,7 @@ function App() {
   const [futureWeatherIconCode1, setFutureWeatherIconCode1] = useState<string>('01d');
   const [futureWeatherIconCode2, setFutureWeatherIconCode2] = useState<string>('01d');
   const [futureWeatherIconCode3, setFutureWeatherIconCode3] = useState<string>('01d');
-  const [futureWeatherIconCode4, setFutureWeatherIconCode4] = useState<string>('00.00');
+  const [futureWeatherIconCode4, setFutureWeatherIconCode4] = useState<string>('01d');
   const [futureWeatherHighTemp2, setfutureWeatherHighTemp2] = useState<string>('00.00');
   const [futureWeatherHighTemp1, setfutureWeatherHighTemp1] = useState<string>('00.00');
   const [futureWeatherHighTemp3, setfutureWeatherHighTemp3] = useState<string>('00.00');
@@ -33,10 +34,11 @@ function App() {
   const [futureWeatherLowTemp1, setfutureWeatherLowTemp1] = useState<string>('00.00');
   const [futureWeatherLowTemp3, setfutureWeatherLowTemp3] = useState<string>('00.00');
   const [futureWeatherLowTemp4, setfutureWeatherLowTemp4] = useState<string>('00.00');
-  const [futureDay1, setFutureDay1] = useState<string>('Unknown');
-  const [futureDay2, setFutureDay2] = useState<string>('Unknown');
-  const [futureDay3, setFutureDay3] = useState<string>('Unknown');
-  const [futureDay4, setFutureDay4] = useState<string>('Unknown');
+  const [futureDay1, setFutureDay1] = useState<string>('Weekday');
+  const [futureDay2, setFutureDay2] = useState<string>('Weekday');
+  const [futureDay3, setFutureDay3] = useState<string>('Weekday');
+  const [futureDay4, setFutureDay4] = useState<string>('Weekday');
+  const [errorExists, setErrorExists] = useState<boolean>(false);
   const [error1, setError1] = useState<string | undefined>(undefined);
   const [error2, setError2] = useState<string | undefined>(undefined);
 
@@ -70,6 +72,8 @@ function App() {
 
   async function getWeatherInfo() {
     try {
+      setErrorExists(false);
+      setWeatherInfoFetched(false);
       const res = await GetWeatherByLatLon({ latitude: latitude, longitude: longitude });
       if (res.status) {
         const tempData = res.resp.main;
@@ -80,19 +84,22 @@ function App() {
         setFeelsLike(tempData.feels_like);
 
         const weatherData = res.resp.weather && Array.isArray(res.resp.weather) ? res.resp.weather[0] : {};
-        console.log(weatherData);
         setMainWeatherCondition(weatherData.main);
         setMainWeatherDescription(weatherData.description);
         setMainWeatherIconCode(weatherData.icon);
         getFourDayWeatherInfo();
       } else {
-        console.log(res.statusCode, res.statusMsg);
+        console.log(res);
         const errorMessage: any = res.statusMsg;
         setError1(errorMessage);
+        setErrorExists(true);
       };
+      setWeatherInfoFetched(true);
     } catch (error: any) {
-      setError1('Unknown Error Occured');
+      setError1(error.message);
       console.error(error.message);
+      setErrorExists(true);
+      setWeatherInfoFetched(true);
     }
   };
 
@@ -124,30 +131,30 @@ function App() {
         if (futureDays[0]) {
           const date0 = new Date(futureDays[0].dt * 1000);
           setFutureDay1(getWeekDay(date0));
-          setFutureWeatherIconCode1(futureDays[0].weather[0]?.icon || "NA");
-          setfutureWeatherHighTemp1(futureDays[0].main?.temp_max?.toString() || "NA");
-          setfutureWeatherLowTemp1(futureDays[0].main?.temp_min?.toString() || "NA");
+          setFutureWeatherIconCode1(futureDays[0].weather[0]?.icon || "01d");
+          setfutureWeatherHighTemp1(futureDays[0].main?.temp_max?.toString() || "00.00");
+          setfutureWeatherLowTemp1(futureDays[0].main?.temp_min?.toString() || "00.00");
         }
         if (futureDays[1]) {
           const date1 = new Date(futureDays[1].dt * 1000);
           setFutureDay2(getWeekDay(date1));
-          setFutureWeatherIconCode2(futureDays[1].weather[0]?.icon || "NA");
-          setfutureWeatherHighTemp2(futureDays[1].main?.temp_max?.toString() || "NA");
-          setfutureWeatherLowTemp2(futureDays[1].main?.temp_min?.toString() || "NA");
+          setFutureWeatherIconCode2(futureDays[1].weather[0]?.icon || "01d");
+          setfutureWeatherHighTemp2(futureDays[1].main?.temp_max?.toString() || "00.00");
+          setfutureWeatherLowTemp2(futureDays[1].main?.temp_min?.toString() || "00.00");
         }
         if (futureDays[2]) {
           const date2 = new Date(futureDays[2].dt * 1000);
           setFutureDay3(getWeekDay(date2));
-          setFutureWeatherIconCode3(futureDays[2].weather[0]?.icon || "NA");
-          setfutureWeatherHighTemp3(futureDays[2].main?.temp_max?.toString() || "NA");
-          setfutureWeatherLowTemp3(futureDays[2].main?.temp_min?.toString() || "NA");
+          setFutureWeatherIconCode3(futureDays[2].weather[0]?.icon || "01d");
+          setfutureWeatherHighTemp3(futureDays[2].main?.temp_max?.toString() || "00.00");
+          setfutureWeatherLowTemp3(futureDays[2].main?.temp_min?.toString() || "00.00");
         }
         if (futureDays[3]) {
           const date3 = new Date(futureDays[3].dt * 1000);
           setFutureDay4(getWeekDay(date3));
-          setFutureWeatherIconCode4(futureDays[3].weather[0]?.icon || "NA");
-          setfutureWeatherHighTemp4(futureDays[3].main?.temp_max?.toString() || "NA");
-          setfutureWeatherLowTemp4(futureDays[3].main?.temp_min?.toString() || "NA");
+          setFutureWeatherIconCode4(futureDays[3].weather[0]?.icon || "01d");
+          setfutureWeatherHighTemp4(futureDays[3].main?.temp_max?.toString() || "00.00");
+          setfutureWeatherLowTemp4(futureDays[3].main?.temp_min?.toString() || "00.00");
         }
 
       } else {
@@ -163,6 +170,7 @@ function App() {
 
   return (
     <>
+      <div id='errorDiv' className={errorExists === true ? 'pop-down': 'no-error'}><DisplayError error={error1} /></div>
       <div id="outerWrap">
         <div id="mainContainer">
           <div id="temperatureDiv">
@@ -175,11 +183,23 @@ function App() {
                 </div>
               </div>
             </div>
-            <div id="temperatureIcon">
+            <div id="temperatureIcon" className='main-weather-icon'>
               <WeatherIcon iconCode={mainWeatherIconCode} />
             </div>
           </div>
           <div id="otherTempStats">
+            <div id="ConditionStats">
+              <div id="conditionContainer" className='other-stats-sub-div poppins-light'>
+                <div className="condition-text condition-sub-div">Conditions:</div>
+                <div className="condition-value condition-sub-div"><span id="conditions">{mainWeatherCondition}</span></div>
+              </div>
+            </div>
+            <div id="DesctiptionStats">
+              <div id="desctiptionContainer" className='other-stats-sub-div poppins-light'>
+                <div className="desctiption-text desctiption-sub-div">Desctiption:</div>
+                <div className="desctiption-value desctiption-sub-div"><span id="desctiption">{mainWeatherDescription}</span></div>
+              </div>
+            </div>
             <div id="feelsLikeStat">
               <div id="feelsLikeContainer" className='other-stats-sub-div poppins-light'>
                 <div className="feelsLike-text feelsLike-sub-div">Feels Like:</div>
@@ -224,7 +244,9 @@ function App() {
         </div>
         <div id="menu">
           <div id="refreshButtonDiv" className='menuDivs'>
-            <button id='getWeatherButton' className='infoButton' onClick={getWeatherInfo}><img src={refresh} alt="" /></button>
+            <button id='getWeatherButton' className={`infoButton ${weatherInfoFetched === false ? 'rotate' : ''}`} onClick={getWeatherInfo} >
+              <img src={refresh} alt="" />
+            </button>
           </div>
           <div id="changeLocationButtonDiv" className='menuDivs'>
             <button><img src={location} alt="" /></button>

@@ -31,9 +31,21 @@ async function GetFourDayWeatherForecast({ latitude, longitude }: Params) {
     } else {
       return { status: reqSuccess, statusCode: response.status, statusMsg: response.statusText };
     };
-  } catch (error) {
-    console.error(error);
-  };
+  }  catch (error: any) {
+        const axiosError = error as import("axios").AxiosError;
+        const message =
+            (axiosError?.response?.data && typeof axiosError.response.data === 'object' && 'message' in axiosError.response.data
+                ? (axiosError.response.data as { message?: string }).message
+                : undefined) ||
+            axiosError?.message ||
+            "Something went wrong";
+
+        return {
+            status: false,
+            statusCode: axiosError?.response?.status || 500,
+            statusMsg: message,
+        };
+    }
 };
 
 export default GetFourDayWeatherForecast;
