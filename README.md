@@ -1,8 +1,3 @@
-Here’s a README.md tailored to your Weather Web App project based on the code and structure you’ve shared:
-
-⸻
-
-
 # 🌦️ WeatherWebApp
 
 A responsive React + Vite + TypeScript weather application that displays real-time and 4-day forecast weather data based on the user's geolocation. The app also updates the UI visually with weather icons and dynamic error handling.
@@ -130,6 +125,4 @@ Made by @r00kieAd
 
 This project is licensed under the MIT License.
 
----
-
-Let me know if you want me to generate this `README.md` file directly into your project folder!
+----
